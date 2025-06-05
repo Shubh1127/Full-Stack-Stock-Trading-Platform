@@ -9,6 +9,14 @@ const userSchema=new Schema({
         unique:true
     },
     orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }],
+    verified: {
+        type: Boolean,
+        default: false
+    },
+    verificationToken: {
+        type: String,
+        default: null
+    },
 })
 
 userSchema.plugin(passportLocalMongoose)

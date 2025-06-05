@@ -1,5 +1,5 @@
 const { Schema, default: mongoose } = require("mongoose");
-const stockData = require("../data"); // Assuming data.js contains the stock data structure
+const stockData = require("../data/data"); // Assuming data.js contains the stock data structure
 
 // Define the Holdings Schema
 const HoldingsSchema = new Schema(
