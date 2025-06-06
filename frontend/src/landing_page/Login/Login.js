@@ -12,7 +12,7 @@ export default function Login(){
             <div className='row '>
             
                 <div className='col-6 p-5 '> 
-                    <img className='mt-5 ms-5 ' src='https://signup.zerodha.com/img/landing.46a77378.png' style={{width:"100%"}}/>
+                    <img className='mt-5 ms-5 ' src='https://zerodha.com/static/images/account_open.svg' alt="login" style={{width:"100%"}}/>
                 </div>
                 <div className='col-1'></div>
                 <div className='col-4  m-5  '>

@@ -1,4 +1,6 @@
 module.exports = (req, res, next) => {
+  console.log('Is Authenticated:', req.isAuthenticated());
+  console.log('User:', req.user);
   if (req.isAuthenticated()) {
     // If the user is authenticated, proceed to the next middleware or route
     return next();

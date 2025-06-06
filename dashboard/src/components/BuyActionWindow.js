@@ -14,11 +14,13 @@ const BuyActionWindow = ({ uid, stockPrice, stockName }) => {
 
   const handleBuyClick = () => {
 
-    axios.post("http://localhost:3002/buystock", {
+    axios.post("http://localhost:3002/order/buystock", {
       name: stockName, 
       qty: stockQuantity,
       price: pricevalue,
       userId: user._id,
+    },{
+      withCredentials: true, // Include credentials for CORS
     });
 
     closeBuyWindow(); 

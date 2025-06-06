@@ -52,7 +52,7 @@ module.exports.login = async (req, res, next) => {
       }
 
       if (!authenticatedUser) {
-        return res.status(401).json({ message: 'Invalid credentials' });
+        return res.status(400).json({ message: 'Invalid credentials' });
       }
 
       req.logIn(authenticatedUser, (err) => {
@@ -64,6 +64,7 @@ module.exports.login = async (req, res, next) => {
           ? 'Login successful'
           : 'Please verify your email';
 
+          console.log("Authenticated User:", authenticatedUser);
         return res.status(200).json({ message: mssg, user: authenticatedUser });
       });
     })(req, res, next);

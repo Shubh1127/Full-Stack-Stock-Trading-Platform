@@ -20,44 +20,42 @@ const User = require('./model/userModel'); // Assuming you have a User model def
 const port = process.env.PORT || 3002;
 const app = express();
 
-app.use(cors());
 app.use(cors({ 
   origin: ['http://localhost:3000', 'http://localhost:3001'],
   credentials: true, 
 }));
 app.use(bodyParser.json());
 
-const sessionOptions={
-  secret:"mysecretcode",
-    resave:false,
-    saveUninitialized: false,
-    cookie:{
-        expires:Date.now() + 7 * 24 * 60 * 60 * 1000,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        httpOnly:true,
-        sameSite:'lax',
-        secure:false,
-    }
-}
+app.use(session({
+  secret: "mysecretcode",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000, // 7 days
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    httpOnly: true,
+    sameSite: 'none', // Required for cross-origin cookies
+    secure: false, // Set to true if using HTTPS
+  },
+}));
 
-app.use(session(sessionOptions))
-app.use(passport.initialize())
-passport.use(new LocalStrategy(User.authenticate()))
-app.use(passport.session())
-
-DB();
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser((user, done) => {
-  done(null, user._id); // Here you save the user ID in the session
+  done(null, user._id); // Save user ID in the session
 });
+
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await User.findById(id); // Retrieve the user from the database
+    const user = await User.findById(id); // Retrieve user from the database
     done(null, user); // Attach user to req.user
   } catch (err) {
     done(err);
   }
 });
+DB();
 
 app.use('/user',UserRoutes);
 app.use('/order',OrderRoutes);

@@ -32,7 +32,7 @@ export const UserProvider = ({ children }) => {
 
   const login = async (data) => {
     try {
-      const response = await axios.post("http://localhost:3002/login", data);
+      const response = await axios.post("http://localhost:3002/user/login", data);
       if (response.data.user) {
         const userData = {
           user: response.data.user,
@@ -62,7 +62,9 @@ export const UserProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      const response = await axios.get('http://localhost:3002/logout');
+      const response = await axios.get('http://localhost:3002/user/logout', {
+        withCredentials: true
+      });
       if (response.status === 200) {
         setUser(null);
         localStorage.removeItem('user');
