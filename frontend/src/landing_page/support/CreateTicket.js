@@ -2,7 +2,7 @@ import React from "react";
 function CreateTicket() {
   return (
     <div className="contianer">
-      <div className="row   p-5">
+      <div className="row   p-6">
         
         <h1 className="text-muted fs-4 " style={{marginLeft:"210px"}}>
           To create a ticket, select a relevant topic
