@@ -4,7 +4,7 @@ function Navbar() {
   return (
     
       <nav class="navbar navbar-expand-lg  border-bottom  bg-body-tertiary " style={{backgroundColor:"#fff",width:"100%"}}>
-        <div class="container p-2">
+        <div class="container p-3">
           <Link class="navbar-brand" to="/">
             <h3 style={{marginRight:"35vw",color:"#1c90e3"}}>TradeWave</h3>
           </Link>
